@@ -191,6 +191,11 @@ async function LoadEndScreen() {
     bookButton4.parentElement.href = `https://www.amazon.com/s?k=${buttonURL4}+book+by+${name4}`;
 
 
+    document.querySelector('#startAgain').addEventListener('click', () => {
+        window.history.back();
+    });
+
+
     bookImg1.addEventListener('load', () => { img1Loaded = true; });
     bookImg2.addEventListener('load', () => { img2Loaded = true; });
     bookImg3.addEventListener('load', () => { img3Loaded = true; });
