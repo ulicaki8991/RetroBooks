@@ -91,6 +91,67 @@
 
 
 
+
+    <!-- Feedback -->
+    <div id="faderFeed"
+        class="transition-colors duration-500 ease-in-out fixed w-screen h-[100%] bg-[#00000000] z-10 flex justify-center items-center backdrop-blur-sm hidden ">
+
+        <div id="panel"
+            class="bg-[#F7F8FC] border-solid border-2 border-[#E2E8F0] rounded-[20px] w-full md:w-2/4 h-[80%] p-3 ">
+
+            <div class="flex flex-row justify-between items-center">
+                <p class="font-bold text-[#1F2937] text-[30px] mb-4">Leave feedback</p>
+                <button id="closefeed" class="btn btn-square">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLSepUuAcSlo3q3r8tGFjoS18Zrk7gzFk2zEQfx8YGatk0o0vDA/viewform"
+                height="200" width="400" frameborder="0"></iframe>
+
+
+
+        </div>
+    </div>
+
+
+
+
+    <!-- End Feedback -->
+    <div id="faderEndFeed"
+        class="transition-colors duration-500 ease-in-out fixed w-screen h-[100%] bg-[#00000000] z-10 flex justify-center items-center backdrop-blur-sm hidden ">
+
+        <div id="panel"
+            class="bg-[#F7F8FC] border-solid border-2 border-[#E2E8F0] rounded-[20px] w-full md:w-2/4 h-auto p-3">
+
+            <div class="flex flex-row justify-between items-center">
+                <p class="font-bold text-[#1F2937] text-[30px] mb-4">Help us! 🌟</p>
+                <button id="closeAskfeed" class="btn btn-square">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <p class="pt-2  pb-2 text-lg text-[#1F2937]">Help us improve RetroBooks with your quick insights.
+            </p>
+
+            <button id="OpenFeedback" class="btn btn-primary w-full">Leave Feedback </button>
+            <p class="text-center pt-2 pb-2 text-lg text-[#1F2937]">Thank you for your support! </p>
+        </div>
+    </div>
+
+
+
+
+
     <!-- Header -->
     <div class="flex flex-row justify-center relative top-2">
         <div
@@ -310,8 +371,22 @@
     </div>
 
 
+
+    <!-- feedback -->
+    <div id="feedback" class="fixed bottom-4 right-4">
+        <div
+            class="help cursor-pointer container bg-[#F7F8FC] hidden sm:flex flex-row gap-3 items-center h-auto pt-2 pb-2 pl-3 pr-3 border-solid border-2 border-[#E2E8F0] rounded-[20px]">
+            <kbd class="kbd">f</kbd>
+            <p>for feedback</p>
+
+        </div>
+    </div>
+
+
+
     <script src="../Popup.js"></script>
-    <script src="../LoadData.js"></script>
+    <script src="../EndFeedback.js"></script>
+    <script src="../LoadData.js" type="module"></script>
 </body>
 
 </html>

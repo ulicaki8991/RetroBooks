@@ -32,3 +32,11 @@ body {
 button {
     cursor: pointer !important;
 }
+
+iframe {
+    border-radius: 20px;
+    width: 100%;
+    height: 90%;
+    /* Removes the border around the iframe, you can remove this line if you want the border */
+    border: 0;
+}

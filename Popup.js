@@ -1,7 +1,9 @@
 let state = -1;
 
 let infoObj = document.querySelector('#info');
+let feedback = document.querySelector('#feedback');
 let fade = document.querySelector('#fader');
+let fade2 = document.querySelector('#faderFeed');
 
 
 
@@ -12,6 +14,13 @@ function sleep(ms) {
 document.addEventListener('keydown', function (event) {
     if (event.code === 'KeyI') {
         PopupAct();
+    }
+});
+
+
+document.addEventListener('keydown', function (event) {
+    if (event.code === 'KeyF') {
+        PopupActFeedback();
     }
 });
 
@@ -29,8 +38,31 @@ async function PopupAct() {
         ClosePopup();
     }
 }
+
+
+async function PopupActFeedback() {
+    if (state === -1) {
+        state *= -1;
+        let fader = document.querySelector("#faderFeed");
+        fader.classList.toggle('hidden');
+        fader.classList.remove("bg-[#00000000]");
+        sleep(10).then(() => {
+            fader.classList.add("bg-[#000000b6]");
+
+        });
+
+
+    }
+    else {
+        ClosePopupfeedback();
+    }
+}
+
+
 infoObj.addEventListener('click', PopupAct, false);
+feedback.addEventListener('click', PopupActFeedback, false);
 fade.addEventListener('click', ClosePopup, false);
+fade2.addEventListener('click', ClosePopupfeedback, false);
 //window.addEventListener('keydown', PopupAct, false);
 
 
@@ -45,6 +77,25 @@ function ClosePopup() {
 
 }
 
+function ClosePopupfeedback() {
+    state *= -1;
+    // fader.classList.toggle('bg-[#000000b6]');
+    let fader2 = document.querySelector("#faderFeed");
+    fader2.classList.remove("bg-[#000000b6]");
+    fader2.classList.add("bg-[#00000000]");
+    fader2.classList.toggle('hidden');
+
+
+}
+
 let buttoni = document.querySelector("#close").addEventListener('click', () => {
     ClosePopup();
-}); 
+});
+
+
+
+
+// let buttonf = document.querySelector("#closefeed").addEventListener('click', () => {
+// ClosePopupfeedback();
+// }); 
+

@@ -1,5 +1,7 @@
 //   AIzaSyDTnDsp2IQRV5dLNW4KclCxvgrpPcty06U
 // https://www.googleapis.com/books/v1/volumes?q={name}:keyes&key=AIzaSyDTnDsp2IQRV5dLNW4KclCxvgrpPcty06U
+import { openFeedbackPopup, closeFeedbackPopup } from "./EndFeedback.js";
+
 
 let categroy = 'entrepreneurship';
 let AllDataGot;
@@ -57,6 +59,8 @@ function SaveBook() {
     if (numbOfMonth != 4) {
         //jsConfetti.addConfetti();
         jsConfetti.addConfetti({ confettiNumber: 500, });
+        var audio = new Audio('/clickSound.wav');
+        audio.play();
         numbOfMonth++;
         BookNames.push(AllDataGot.data.works[numBook].title.replaceAll(']', '').replaceAll('[', ''));
         BookYear.push(`${AllDataGot.data.works[numBook].first_publish_year}, ${AllDataGot.data.works[numBook].authors[0].name}`);
@@ -167,28 +171,28 @@ async function LoadEndScreen() {
     bookImg1.src = BookImg[0];
     let buttonURL1 = BookNames[0].replaceAll(' ', '+');
     let name1 = BookYear[0].split(' ')[1].replaceAll(' ', '+');
-    bookButton1.parentElement.href = `https://www.amazon.com/s?k=${buttonURL1}+ book+by+${name1}`;
+    bookButton1.parentElement.href = `https://www.amazon.com/s?k=${buttonURL1}+ book+by+${name1}&linkCode=ll2&tag=devmax0b-20&linkId=4c46c637a176b1d20e13c684b9e27a89&language=en_US&ref_=as_li_ss_tl`;
 
     bookName2.innerText = BookNames[1];
     bookYear2.innerText = BookYear[1];
     bookImg2.src = BookImg[1];
     let buttonURL2 = BookNames[1].replaceAll(' ', '+');
     let name2 = BookYear[1].split(' ')[1].replaceAll(' ', '+');
-    bookButton2.parentElement.href = `https://www.amazon.com/s?k=${buttonURL2}+book+by+${name2}`;
+    bookButton2.parentElement.href = `https://www.amazon.com/s?k=${buttonURL2}+book+by+${name2}&linkCode=ll2&tag=devmax0b-20&linkId=4c46c637a176b1d20e13c684b9e27a89&language=en_US&ref_=as_li_ss_tl`;
 
     bookName3.innerText = BookNames[2];
     bookYear3.innerText = BookYear[2];
     bookImg3.src = BookImg[2];
     let buttonURL3 = BookNames[2].replaceAll(' ', '+');
     let name3 = BookYear[2].split(' ')[1].replaceAll(' ', '+');
-    bookButton3.parentElement.href = `https://www.amazon.com/s?k=${buttonURL3}+book+by+${name3}`;
+    bookButton3.parentElement.href = `https://www.amazon.com/s?k=${buttonURL3}+book+by+${name3}&linkCode=ll2&tag=devmax0b-20&linkId=4c46c637a176b1d20e13c684b9e27a89&language=en_US&ref_=as_li_ss_tl`;
 
     bookName4.innerText = BookNames[3];
     bookYear4.innerText = BookYear[3];
     bookImg4.src = BookImg[3];
     let buttonURL4 = BookNames[3].replaceAll(' ', '+');
     let name4 = BookYear[3].split(' ')[1].replaceAll(' ', '+');
-    bookButton4.parentElement.href = `https://www.amazon.com/s?k=${buttonURL4}+book+by+${name4}`;
+    bookButton4.parentElement.href = `https://www.amazon.com/s?k=${buttonURL4}+book+by+${name4}&linkCode=ll2&tag=devmax0b-20&linkId=4c46c637a176b1d20e13c684b9e27a89&language=en_US&ref_=as_li_ss_tl`;
 
 
     document.querySelector('#startAgain').addEventListener('click', () => {
@@ -213,8 +217,9 @@ async function LoadEndScreen() {
         console.log('loaded');
         document.querySelector('#loader').classList.toggle('hidden');
         document.querySelector('#AllBooks').classList.toggle('hidden');
-
-
+        sleep(3000).then(() => {
+            openFeedbackPopup();
+        });
     });
 }
 
@@ -256,3 +261,30 @@ function Random(num, from) {
         minYear = slider.value;
     }, 10);
 } */
+
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+document.addEventListener('keydown', function (event) {
+    if (event.code === 'KeyEscape') {
+        closeFeedbackPopup();
+    }
+});
+
+document.querySelector("#closeAskfeed").addEventListener('click', () => {
+    closeFeedbackPopup();
+});
+
+document.querySelector("#faderEndFeed").addEventListener('click', () => {
+    closeFeedbackPopup();
+});
+
+
+document.querySelector("#OpenFeedback").addEventListener('click', () => {
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLSepUuAcSlo3q3r8tGFjoS18Zrk7gzFk2zEQfx8YGatk0o0vDA/viewform', "_blank");
+});
+
+

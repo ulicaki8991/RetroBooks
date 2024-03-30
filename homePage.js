@@ -7,3 +7,14 @@ for (let but of buttons) {
 
     });
 }
+
+const SoundBTN = document.querySelectorAll('.soundBtn');
+
+for (let but of SoundBTN) {
+    but.addEventListener('mouseover', () => {
+        var audio = new Audio('/hover.wav');
+        audio.play();
+    });
+}
+
+
