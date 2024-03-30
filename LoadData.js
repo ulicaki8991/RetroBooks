@@ -4,6 +4,8 @@ import { openFeedbackPopup, closeFeedbackPopup } from "./EndFeedback.js";
 
 
 let categroy = 'entrepreneurship';
+let fromYear = '1600';
+let toYear = '2020';
 let AllDataGot;
 let numBook;
 let BookNameObj = document.querySelector('#book_name');
@@ -15,6 +17,7 @@ let LoadedContent = document.querySelector('#loaded')
 let NowMonthText = document.querySelector('#MonthText');
 //let buttonFilter = document.querySelector('#YearButton');
 let canvas = document.querySelector('#confetti');
+let numbOfBook = document.querySelector('#numbOfBook');
 
 let minYear = 1990;
 let bookLoaded = false;
@@ -34,6 +37,10 @@ let img3Loaded = false;
 let img4Loaded = false;
 
 
+let img_skeleton = document.querySelector('#book_cover_skeleton');
+let img_full = document.querySelector('#book_cover');
+let content_skeleton = document.querySelector('#content_skeleton');
+let content_full = document.querySelector('#content_full');
 
 
 ReloadButton.addEventListener('click', ReloadBook);
@@ -46,14 +53,18 @@ const jsConfetti = new JSConfetti();
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 categroy = urlParams.get('categroy');
+fromYear = urlParams.get('fromYear');
+toYear = urlParams.get('toYear');
 
 
 let logo = document.querySelector('#logo').addEventListener('click', () => { window.history.back(); });
 
 function ReloadBook() {
-    HideSkeleton();
+
     Loaded();
 }
+
+
 
 function SaveBook() {
     if (numbOfMonth != 4) {
@@ -62,8 +73,8 @@ function SaveBook() {
         var audio = new Audio('/clickSound.wav');
         audio.play();
         numbOfMonth++;
-        BookNames.push(AllDataGot.data.works[numBook].title.replaceAll(']', '').replaceAll('[', ''));
-        BookYear.push(`${AllDataGot.data.works[numBook].first_publish_year}, ${AllDataGot.data.works[numBook].authors[0].name}`);
+        BookNames.push(AllDataGot.data.works[0].title.replaceAll(']', '').replaceAll('[', ''));
+        BookYear.push(`${AllDataGot.data.works[0].first_publish_year}, ${AllDataGot.data.works[0].authors[0].name}`);
         BookImg.push(nowimgURL);
         NowMonthText.innerText = `Book for Month: ${numbOfMonth}`;
 
@@ -72,14 +83,15 @@ function SaveBook() {
     else {
         jsConfetti.addConfetti({ confettiNumber: 500, });
         numbOfMonth++;
-        BookNames.push(AllDataGot.data.works[numBook].title.replaceAll(']', '').replaceAll('[', ''));
-        BookYear.push(`${AllDataGot.data.works[numBook].first_publish_year}, ${AllDataGot.data.works[numBook].authors[0].name}`);
+        BookNames.push(AllDataGot.data.works[0].title.replaceAll(']', '').replaceAll('[', ''));
+        BookYear.push(`${AllDataGot.data.works[0].first_publish_year}, ${AllDataGot.data.works[0].authors[0].name}`);
         BookImg.push(nowimgURL);
         document.querySelector('#SelectingBooks').classList.toggle("hidden");
         document.querySelector('#loader').classList.toggle("hidden");
         LoadEndScreen();
     }
 }
+
 
 Loaded();
 //loopNumberInput();
@@ -98,48 +110,89 @@ Loaded();
 }
 */
 
+
+
+
 function Loaded() {
 
-    bookLoaded = false;
-    let randomOfsset = Random(2, 1);
-    console.log(`Search: https://openlibrary.org/subjects/${categroy}.json?limit=30&offset=${randomOfsset}`)
-    axios.get(`https://openlibrary.org/subjects/${categroy}.json?limit=30&offset=${randomOfsset}`).then(resoponse => {
+
+
+    img_skeleton.classList.remove('hidden');
+    img_full.classList.remove('hidden');
+    content_skeleton.classList.remove('hidden');
+    content_full.classList.remove('hidden');
+
+    content_full.classList.add('hidden');
+    img_full.classList.add('hidden');
+    // Getting number of all books in this topic
+
+    console.log(`req: https://openlibrary.org/subjects/${categroy}.json?published_in=${fromYear}-${toYear}`)
+    axios.get(`https://openlibrary.org/subjects/${categroy}.json?published_in=${fromYear}-${toYear}`).then(resoponse => {
+
+
+        //generating a offset based on the number of books (for randoming)
+        let data = resoponse;
+
+        if (data.data.work_count !== 0) {
+
+            bookLoaded = false;
+            let MaxOfSet = data.data.work_count - 1;
+            let randomOfsset = Random(MaxOfSet, 1);
+
+            numbOfBook.innerText = `Founded: ${MaxOfSet + 1} books`;
+
+            // Getting One random book from the category
+            axios.get(`https://openlibrary.org/subjects/${categroy}.json?limit=30&offset=${randomOfsset}`).then(resoponse => {
 
 
 
 
-        AllDataGot = resoponse;
-        numBook = Random(AllDataGot.data.works.length, 0);
-        let formatedName = AllDataGot.data.works[numBook].title.replaceAll(' ', '+').replaceAll('[', '').replaceAll(']', '');
+                AllDataGot = resoponse;
 
-        let formatedAthor = AllDataGot.data.works[numBook].authors[0].name.replaceAll(' ', '+');
+                let formatedName = AllDataGot.data.works[0].title.replaceAll(' ', '+').replaceAll('[', '').replaceAll(']', '');
 
 
+                let formatedAthor = AllDataGot.data.works[0].authors[0].name.replaceAll(' ', '+');
 
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${formatedName}+inauthor:${formatedAthor}&key=AIzaSyDTnDsp2IQRV5dLNW4KclCxvgrpPcty06U
+
+
+
+                BookNameObj.innerText = AllDataGot.data.works[0].title.replaceAll(']', '').replaceAll('[', '');
+                year.innerText = `${AllDataGot.data.works[0].first_publish_year}, ${AllDataGot.data.works[0].authors[0].name}`;
+
+                book_cover.src = `https://covers.openlibrary.org/b/id/${AllDataGot.data.works[0].cover_id}-L.jpg`;
+
+                content_skeleton.classList.add('hidden');
+                content_full.classList.remove('hidden');
+
+                axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${formatedName}+inauthor:${formatedAthor}&key=AIzaSyDTnDsp2IQRV5dLNW4KclCxvgrpPcty06U
     `).then(res => {
 
 
-            if (res.data.items && res.data.items.length > 0) {
+                    if (res.data.items && res.data.items.length > 0) {
 
-                const firstBook = res.data.items[0];
-                BookNameObj.innerText = AllDataGot.data.works[numBook].title.replaceAll(']', '').replaceAll('[', '');
-                year.innerText = `${AllDataGot.data.works[numBook].first_publish_year}, ${AllDataGot.data.works[numBook].authors[0].name}`;
-                description.innerText = firstBook.volumeInfo.description;
-                book_cover.src = `https://covers.openlibrary.org/b/id/${AllDataGot.data.works[numBook].cover_id}-L.jpg`;
-                nowimgURL = `https://covers.openlibrary.org/b/id/${AllDataGot.data.works[numBook].cover_id}-L.jpg`;
-                bookLoaded = true;
-                book_cover.addEventListener('load', EndLoadingImage);
-            } else {
-                console.log('No books found');
-                BookNameObj.innerText = AllDataGot.data.works[numBook].title;
-                year.innerText = `${AllDataGot.data.works[numBook].first_publish_year}, ${AllDataGot.data.works[numBook].authors[0].name}`;
-                description.innerText = 'No description available';
-            }
+                        const firstBook = res.data.items[0];
+                        description.innerText = firstBook.volumeInfo.description;
+                        nowimgURL = `https://covers.openlibrary.org/b/id/${AllDataGot.data.works[0].cover_id}-L.jpg`;
+                        bookLoaded = true;
+                        book_cover.addEventListener('load', EndLoadingImage);
+                    } else {
+                        console.log('No books found');
+                        BookNameObj.innerText = AllDataGot.data.works[0].title;
+                        year.innerText = `${AllDataGot.data.works[0].first_publish_year}, ${AllDataGot.data.works[numBook].authors[0].name}`;
+                        description.innerText = 'No description available';
+                    }
 
-        });
+                });
+
+            });
+        }
+        else {
+            alert('NO books');
+        }
 
     });
+
 
 }
 
@@ -230,7 +283,9 @@ async function LoadEndScreen() {
 
 function EndLoadingImage() {
 
-    HideSkeleton();
+    img_skeleton.classList.add('hidden');
+    img_full.classList.remove('hidden');
+    //   HideSkeleton();
 }
 
 
@@ -286,5 +341,8 @@ document.querySelector("#faderEndFeed").addEventListener('click', () => {
 document.querySelector("#OpenFeedback").addEventListener('click', () => {
     window.open('https://docs.google.com/forms/d/e/1FAIpQLSepUuAcSlo3q3r8tGFjoS18Zrk7gzFk2zEQfx8YGatk0o0vDA/viewform', "_blank");
 });
+
+
+
 
 

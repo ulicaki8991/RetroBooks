@@ -1,9 +1,16 @@
 let buttons = document.querySelectorAll('.cat');
+
+let fromLab = document.querySelector('#fromYear_lab')
+let toLab = document.querySelector('#toYear_lab')
+let fromSlider = document.querySelector('#fromYear_slider')
+let toSlider = document.querySelector('#toYear_slider')
+
+
 for (let but of buttons) {
     but.addEventListener('click', () => {
         console.log('pressed');
 
-        window.location.href = `Pages/books.html?categroy=${but.getAttribute('alt')}`;
+        window.location.href = `Pages/books.html?categroy=${but.getAttribute('alt')}&fromYear=${fromSlider.value}&toYear=${toSlider.value}`;
 
     });
 }
@@ -17,4 +24,9 @@ for (let but of SoundBTN) {
     });
 }
 
+
+setInterval(() => {
+    fromLab.innerHTML = `From year: ${fromSlider.value}`;
+    toLab.innerHTML = `From year: ${toSlider.value}`;
+}, 10);
 

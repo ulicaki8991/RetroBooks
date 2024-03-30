@@ -124,7 +124,7 @@
 
     <!-- End Feedback -->
     <div id="faderEndFeed"
-        class="transition-colors duration-500 ease-in-out fixed w-screen h-[100%] bg-[#00000000] z-10 flex justify-center items-center backdrop-blur-sm hidden ">
+        class="transition-colors duration-500 ease-in-out fixed w-screen h-[100%] bg-[#00000000] z-10 flex justify-center items-center backdrop-blur-sm  hidden">
 
         <div id="panel"
             class="bg-[#F7F8FC] border-solid border-2 border-[#E2E8F0] rounded-[20px] w-full md:w-2/4 h-auto p-3">
@@ -177,7 +177,8 @@
                     class="mt-0 md:mt-8 text-center font-black text-[25px] sm:text-[30px] md:text-[40px] text-[#1F2937]">
                     Book for
                     Month: 1</h1>
-
+                <p id="numbOfBook" class=" text-center font-black text-[14px] sm:text-[20px]  text-[#1F2937]">
+                    Founded: ---- books</p>
 
                 <!-- Slider of years-->
 
@@ -193,7 +194,7 @@
 
                 <!-- Skeleton -->
                 <div id="skeleton"
-                    class=" flex flex-col md:flex-row items-center gap-5 mt-10 w-full sm:w-3/4 md:w-full lg:w-full xl:w-3/4 2xl:w-3/5">
+                    class=" hidden flex flex-col md:flex-row items-center gap-5 mt-10 w-full sm:w-3/4 md:w-full lg:w-full xl:w-3/4 2xl:w-3/5">
 
                     <div class="skeleton w-1/3 h-[150px] sm:h-[370px]"></div>
 
@@ -213,11 +214,23 @@
 
                 <!-- Loaded -->
                 <div id="loaded"
-                    class="hidden flex flex-col md:flex-row justify-center items-center gap-5 mt-10 w-full sm:w-3/4 md:w-full lg:w-full xl:w-3/4 2xl:w-3/5">
+                    class=" flex flex-col md:flex-row justify-center items-center gap-5 mt-10 w-full sm:w-3/4 md:w-full lg:w-full xl:w-3/4 2xl:w-3/5">
+                    <div id="book_cover_skeleton" class="skeleton w-1/3 h-[150px] sm:h-[370px]"></div>
                     <img id="book_cover"
-                        class="w-[150px] md:w-[250px] rounded-[10px] border-solid border-2 border-[#E2E8F0]" src=""
-                        alt="">
-                    <div class="w-2/4 flex flex-col gap-2 justify-center">
+                        class="hidden w-[150px] md:w-[250px] rounded-[10px] border-solid border-2 border-[#E2E8F0]"
+                        src="" alt="">
+
+                    <div id="content_skeleton" class="flex flex-col gap-2 w-screen items-center ">
+                        <div class="skeleton h-4 w-5/6 sm:w-auto"></div>
+                        <div class="skeleton h-4 w-1/6"></div>
+                        <div class="skeleton h-16 w-5/6"></div>
+                        <div class="mt-10">
+                            <button class="btn w-full  btn-disabled lg:w-3/5 mr-3 mb-3">OTHER BOOK 🔃</button>
+                            <button class="btn w-full  btn-disabled lg:w-3/5 btn-primary">SELECT ✅</button>
+                        </div>
+                    </div>
+
+                    <div id="content_full" class="hidden w-2/4 flex flex-col gap-2 justify-center">
                         <h2 id="book_name" class="font-black text-[30px] text-center md:text-left text-[#1F2937]"></h2>
                         <p id="year" class="text-[#1F2937] text-center md:text-left"></p>
                         <p id="description" class=" text-[#1F2937] text-center md:text-left"></p>
@@ -385,6 +398,7 @@
 
 
     <script src="../Popup.js"></script>
+    <script src="../apiData.js"></script>
     <script src="../EndFeedback.js"></script>
     <script src="../LoadData.js" type="module"></script>
 </body>

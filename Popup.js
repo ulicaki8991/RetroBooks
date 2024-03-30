@@ -88,6 +88,18 @@ function ClosePopupfeedback() {
 
 }
 
+
+function ClosePopupEndfeedback() {
+    state *= -1;
+    // fader.classList.toggle('bg-[#000000b6]');
+    let fader2 = document.querySelector("#faderEndFeed");
+    fader2.classList.remove("bg-[#000000b6]");
+    fader2.classList.add("bg-[#00000000]");
+    fader2.classList.toggle('hidden');
+
+
+}
+
 let buttoni = document.querySelector("#close").addEventListener('click', () => {
     ClosePopup();
 });
@@ -95,7 +107,7 @@ let buttoni = document.querySelector("#close").addEventListener('click', () => {
 
 
 
-// let buttonf = document.querySelector("#closefeed").addEventListener('click', () => {
-// ClosePopupfeedback();
-// }); 
+let buttonf = document.querySelector("#closeAskfeed").addEventListener('click', () => {
+    ClosePopupEndfeedback();
+});
 
