@@ -1,9 +1,13 @@
+const { url } = require("inspector");
+
 let state = -1;
 
 let infoObj = document.querySelector('#info');
 let feedback = document.querySelector('#feedback');
 let fade = document.querySelector('#fader');
 let fade2 = document.querySelector('#faderFeed');
+
+
 
 
 
