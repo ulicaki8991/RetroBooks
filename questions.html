@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html data-theme="light" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro book picker</title>
+
+    <link rel="icon" type="image/png" href="img/favicon.png">
+
+
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ERMYBSY76Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-ERMYBSY76Y');
+    </script>
+
+
+    <!-- Smartlook -->
+    <script type='text/javascript'>
+        window.smartlook || (function (d) {
+            var o = smartlook = function () { o.api.push(arguments) }, h = d.getElementsByTagName('head')[0];
+            var c = d.createElement('script'); o.api = new Array(); c.async = true; c.type = 'text/javascript';
+            c.charset = 'utf-8'; c.src = 'https://web-sdk.smartlook.com/recorder.js'; h.appendChild(c);
+        })(document);
+        smartlook('init', '2e7b9865b6790e4054a63eabcb810ae7068eabcb', { region: 'eu' });
+    </script>
+
+
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.8.0/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Popup -->
+    <div id="fader"
+        class="transition-colors duration-500 ease-in-out fixed w-screen h-[100%] bg-[#00000000] z-20 flex justify-center items-center backdrop-blur-sm  hidden">
+
+        <div id="panel"
+            class=" bg-[#F7F8FC] border-solid border-2 border-[#E2E8F0] rounded-[20px] w-full md:w-2/4 h-auto p-3 flex flex-col items-center">
+            <div class=" flex flex-row w-full justify-between items-center">
+                <p class="font-bold text-[#1F2937] text-[30px]">Hey, book lover 📚</p>
+                <button id="" class=" btn btn-square">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="close flex gap-4 mt-4">
+
+
+                <img class="poptwit cursor-pointer hover:rotate-[-20deg] w-[80px] h-[80px] rounded-full transition-all hover:scale-[0.9]"
+                    src="img/av.jpeg" alt="">
+                <div class="w-3/4">
+                    <p>I'm <span class="poptwit cursor-pointer text-[#4A00FF]">Max</span>, the
+                        wizard behind the curtain
+                        of this retro book picker. Just two weeks into learning
+                        web development, and here I am building first free product. want to support me? just join my
+                        twitter, its all what i am asking.</p>
+
+
+                </div>
+
+            </div>
+
+
+            <button class="poptwit z-10 mt-5 mb-5 btn btn-wide btn-primary text-white">join
+                Twitter</button>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- Header -->
+    <div class="flex flex-row justify-center relative top-2">
+        <div
+            class="container bg-[#F7F8FC] w-screen sm:w-2/4 h-auto p-2 border-solid border-2 border-[#E2E8F0] rounded-[20px] grid grid-cols-3 ">
+            <button class="cursor-pointer"><a href="https://twitter.com/MOulitzky"><img
+                        class="cust-button rounded-[11px] w-[43px]" src="img/x.png"></a></button>
+            <button id="logo" class="flex flex-row justify-center"><img class="w-[120px]" src="img/Logo.png"></button>
+
+        </div>
+    </div>
+
+
+
+
+    <div id="content">
+        <div class="flex flex-col">
+            <div id="picker" class="flex flex-col items-center">
+                <h1 class="mt-8 text-center font-black text-[25px] sm:text-[30px] md:text-[40px] text-[#1F2937]">Find
+                    new 4 RETRO books
+                    for next 4 months
+                </h1>
+                <h2 class="font-bold text-[20px] text-[#1F2937]">and where to buy them</h2>
+                <div class="flex gap-20 pt-7">
+                    <form action="">
+                        <Label id="fromYear_lab">From Year: 1231</Label>
+                        <input id="fromYear_slider" type="range" min="1400" max="2024" value="1400"
+                            class="range range-xs" />
+
+                    </form>
+                    <form action="">
+                        <Label id="toYear_lab">To Year: 1235</Label>
+                        <input id="toYear_slider" type="range" min="1400" max="2024" value="2024"
+                            class="range range-xs" />
+                    </form>
+                </div>
+
+                <div class="flex mt-12 flex-wrap content-center justify-center w-screen sm:w-3/4 md:w-2/4">
+                    <!-- <button alt="business" class="text-base btn cat btn-outline btn-primary m-3">📊 Business</button> -->
+                    <button alt="film" class="soundBtn text-base  btn cat btn-outline btn-primary m-3">🎥 Film</button>
+                    <button alt="science_fiction" class="soundBtn text-base btn cat btn-outline btn-primary m-3">🌌
+                        Science
+                        Fiction</button>
+                    <button alt="romance" class=" soundBtn text-base btn cat btn-outline btn-primary m-3">💘
+                        Romance</button>
+                    <button alt="mystery_and_detective"
+                        class="soundBtn text-base btn cat btn-outline btn-primary m-3">🕵️‍♂️
+                        Mystery and
+                        Detective</button>
+                    <button alt="fairy_tales" class=" soundBtn text-base btn cat btn-outline btn-primary m-3">🧚‍♀️
+                        Fairy
+                        Tales</button>
+                    <button alt="classic_literature" class=" soundBtn text-base btn cat btn-outline btn-primary m-3">📖
+                        Classic
+                        Literature</button>
+                    <button alt="cooking" class=" soundBtn text-base btn cat btn-outline btn-primary m-3">🍳
+                        Cooking</button>
+                    <button alt="travel" class="soundBtn text-base btn cat btn-outline btn-primary m-3">🏞
+                        Travel</button>
+                    <button alt="drama" class="soundBtn text-base btn cat btn-outline btn-primary m-3">🎭 Drama</button>
+                    <button alt="dragons" class="soundBtn text-base btn cat btn-outline btn-primary m-3">🐉
+                        Dragons</button>
+                    <button alt="adventure" class="soundBtn text-base btn cat btn-outline btn-primary m-3">🧳
+                        Adventure</button>
+                    <button alt="aliens" class="soundBtn text-base btn cat btn-outline btn-primary m-3">👽
+                        Aliens</button>
+                    <button alt="nature" class="soundBtn text-base btn cat btn-outline btn-primary m-3">🌳
+                        Nature</button>
+                    <button alt="education" class="soundBtn text-base btn cat btn-outline btn-primary m-3">🎓
+                        Education</button>
+                    <button alt="graphic_novels" class="soundBtn text-base btn cat btn-outline btn-primary m-3">🎨
+                        Graphic
+                        Novels</button>
+                    <button alt="historical_fiction" class="soundBtn text-base btn cat btn-outline btn-primary m-3">🏰
+                        Historical
+                        Fiction</button>
+                    <button alt="self-help" class="soundBtn text-base btn cat btn-outline btn-primary m-3">🧘‍♀️
+                        Self-Help</button>
+                    <button alt="economics" class="soundBtn text-base btn cat btn-outline btn-primary m-3">💸
+                        Economics</button>
+                    <button alt="science" class="soundBtn text-base btn cat btn-outline btn-primary m-3">🔬
+                        Science</button>
+                    <button alt="music" class="soundBtn text-base btn cat btn-outline btn-primary m-3">🎶 Music</button>
+                    <button alt="sports" class="soundBtn text-base btn cat btn-outline btn-primary m-3">🏈
+                        Sports</button>
+
+                    <button alt="geography" class="soundBtn text-base btn cat btn-outline btn-primary m-3">🗺
+                        Geography</button>
+                    <button alt="pets" class="soundBtn text-base btn cat btn-outline btn-primary m-3">🐶 Pets</button>
+
+
+
+
+
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!-- Information -->
+    <div id="info"
+        class="fixed bottom-12 sm:bottom-6 left-6 transition-all rotate-[5deg] hover:scale-[1.2] z-50  hover:rotate-[-10deg]">
+        <div
+            class="help cursor-pointer container bg-[#F7F8FC] flex flex-row gap-8 items-center h-auto pt-2 pb-2 pl-3 pr-3 border-solid border-2 border-[#E2E8F0] rounded-[20px]">
+            <img class="w-[20px] h-[20px] scale-[3] rounded-full transition-all hover:scale-[2.5] hover:rotate-[-30deg]"
+                src="img/av.jpeg" alt="">
+            <p>Max?</p>
+
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- Popup -->
+
+    <script src="AboutMax.js"></script>
+    <script src="homePage.js"></script>
+    <script src="Popup.js"></script>
+</body>
+
+
+</html>

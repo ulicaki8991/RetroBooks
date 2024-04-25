@@ -30,3 +30,8 @@ setInterval(() => {
     toLab.innerHTML = `From year: ${toSlider.value}`;
 }, 10);
 
+
+document.querySelector('#logo').addEventListener('click', () => {
+    window.open("index.html");
+});
+
